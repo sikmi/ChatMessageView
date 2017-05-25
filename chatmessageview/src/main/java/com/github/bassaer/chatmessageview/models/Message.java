@@ -138,7 +138,8 @@ public class Message {
         TEXT,
         PICTURE,
         MAP,
-        LINK
+        LINK,
+        TEXT_EXTENSION
     }
 
     /**

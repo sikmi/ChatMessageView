@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,8 @@ public class MessageAdapter extends ArrayAdapter<Object> {
     private int mLeftMessageTextColor = Color.BLACK;
     private int mLeftBubbleColor;
     private int mRightBubbleColor;
+    private int mRightMessageLinkColor = mRightMessageTextColor;
+    private int mLeftMessageLinkColor = mLeftMessageTextColor;
     private int mStatusColor = ContextCompat.getColor(getContext(), R.color.blueGray500);
     /**
      * Default message item margin top
@@ -173,6 +176,17 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     View pictureBubble = mLayoutInflater.inflate(R.layout.message_picture_right, holder.mainMessageContainer);
                     holder.messagePicture = (RoundImageView) pictureBubble.findViewById(R.id.message_picture);
                     holder.messagePicture.setImageBitmap(message.getPicture());
+                } else if (message.getType() == Message.Type.TEXT_EXTENSION) {
+                    //Set text
+                    View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
+                    holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
+                    holder.messageText.setAutoLinkMask(Linkify.WEB_URLS);
+                    holder.messageText.setText(message.getMessageText());
+                    //Set bubble color
+                    setColorDrawable(mRightBubbleColor, holder.messageText.getBackground());
+                    //Set message text color
+                    holder.messageText.setTextColor(mRightMessageTextColor);
+                    holder.messageText.setLinkTextColor(mRightMessageLinkColor);
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
@@ -258,6 +272,17 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     View pictureBubble = mLayoutInflater.inflate(R.layout.message_picture_left, holder.mainMessageContainer);
                     holder.messagePicture = (RoundImageView) pictureBubble.findViewById(R.id.message_picture);
                     holder.messagePicture.setImageBitmap(message.getPicture());
+                } else if (message.getType() == Message.Type.TEXT_EXTENSION) {
+                    //Set text
+                    View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
+                    holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
+                    holder.messageText.setAutoLinkMask(Linkify.WEB_URLS);
+                    holder.messageText.setText(message.getMessageText());
+                    //Set bubble color
+                    setColorDrawable(mLeftBubbleColor, holder.messageText.getBackground());
+                    //Set message text color
+                    holder.messageText.setTextColor(mLeftMessageTextColor);
+                    holder.messageText.setLinkTextColor(mLeftMessageLinkColor);
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
@@ -407,6 +432,14 @@ public class MessageAdapter extends ArrayAdapter<Object> {
 
     public void setMessageBottomMargin(int messageBottomMargin) {
         mMessageBottomMargin = messageBottomMargin;
+    }
+
+    public void setmRightMessageLinkColor(int mRightMessageLinkColor) {
+        this.mRightMessageLinkColor = mRightMessageLinkColor;
+    }
+
+    public void setmLeftMessageLinkColor(int mLeftMessageLinkColor) {
+        this.mLeftMessageLinkColor = mLeftMessageLinkColor;
     }
 
     public void setStatusColor(int statusTextColor) {
