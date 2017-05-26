@@ -1,9 +1,11 @@
 package com.github.bassaer.chatmessageview.views.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.util.Linkify;
@@ -13,9 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.bassaer.chatmessageview.R;
+import com.github.bassaer.chatmessageview.models.LinkData;
 import com.github.bassaer.chatmessageview.models.Message;
 import com.github.bassaer.chatmessageview.models.User;
 import com.github.bassaer.chatmessageview.views.RoundImageView;
@@ -179,14 +183,42 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                 } else if (message.getType() == Message.Type.TEXT_EXTENSION) {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
+                    holder.messageTextBubble = (LinearLayout) textBubble.findViewById(R.id.message_bubble);
                     holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
                     holder.messageText.setAutoLinkMask(Linkify.WEB_URLS);
                     holder.messageText.setText(message.getMessageText());
                     //Set bubble color
-                    setColorDrawable(mRightBubbleColor, holder.messageText.getBackground());
+                    setColorDrawable(mRightBubbleColor, holder.messageTextBubble.getBackground());
                     //Set message text color
                     holder.messageText.setTextColor(mRightMessageTextColor);
                     holder.messageText.setLinkTextColor(mRightMessageLinkColor);
+                    //Set link preview
+                    for (final LinkData data : message.getLinkDatas()) {
+                        View linkView = mLayoutInflater.inflate(R.layout.message_preview_right, null);
+                        View previewLine = linkView.findViewById(R.id.line);
+                        TextView previewTitleText = (TextView) linkView.findViewById(R.id.title_text);
+                        TextView previewDescripsionText = (TextView) linkView.findViewById(R.id.description_text);
+                        RoundImageView previewThumbnail = (RoundImageView) linkView.findViewById(R.id.thumbnail);
+                        //Set text
+                        previewTitleText.setText(data.getTitle());
+                        previewDescripsionText.setText(data.getDescription());
+                        //Set picture
+                        previewThumbnail.setImageBitmap(data.getIcon());
+                        //Set message text color
+                        previewLine.setBackgroundColor(mRightMessageLinkColor);
+                        previewTitleText.setTextColor(mRightMessageTextColor);
+                        previewDescripsionText.setTextColor(mRightMessageTextColor);
+                        //Set Click
+                        linkView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Uri uri = Uri.parse(data.getUrl());
+                                Intent i = new Intent(Intent.ACTION_VIEW,uri);
+                                getContext().startActivity(i);
+                            }
+                        });
+                        holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    }
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
@@ -275,14 +307,42 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                 } else if (message.getType() == Message.Type.TEXT_EXTENSION) {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
+                    holder.messageTextBubble = (LinearLayout) textBubble.findViewById(R.id.message_bubble);
                     holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
                     holder.messageText.setAutoLinkMask(Linkify.WEB_URLS);
                     holder.messageText.setText(message.getMessageText());
                     //Set bubble color
-                    setColorDrawable(mLeftBubbleColor, holder.messageText.getBackground());
+                    setColorDrawable(mLeftBubbleColor, holder.messageTextBubble.getBackground());
                     //Set message text color
                     holder.messageText.setTextColor(mLeftMessageTextColor);
                     holder.messageText.setLinkTextColor(mLeftMessageLinkColor);
+                    //Set link preview
+                    for (final LinkData data : message.getLinkDatas()) {
+                        View linkView = mLayoutInflater.inflate(R.layout.message_preview_left, null);
+                        View previewLine = linkView.findViewById(R.id.line);
+                        TextView previewTitleText = (TextView) linkView.findViewById(R.id.title_text);
+                        TextView previewDescripsionText = (TextView) linkView.findViewById(R.id.description_text);
+                        RoundImageView previewThumbnail = (RoundImageView) linkView.findViewById(R.id.thumbnail);
+                        //Set text
+                        previewTitleText.setText(data.getTitle());
+                        previewDescripsionText.setText(data.getDescription());
+                        //Set picture
+                        previewThumbnail.setImageBitmap(data.getIcon());
+                        //Set message text color
+                        previewLine.setBackgroundColor(mLeftMessageLinkColor);
+                        previewTitleText.setTextColor(mLeftMessageTextColor);
+                        previewDescripsionText.setTextColor(mLeftMessageTextColor);
+                        //Set Click
+                        linkView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Uri uri = Uri.parse(data.getUrl());
+                                Intent i = new Intent(Intent.ACTION_VIEW,uri);
+                                getContext().startActivity(i);
+                            }
+                        });
+                        holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    }
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
@@ -451,6 +511,7 @@ public class MessageAdapter extends ArrayAdapter<Object> {
         CircleImageView icon;
         FrameLayout iconContainer;
         RoundImageView messagePicture;
+        LinearLayout messageTextBubble;
         TextView messageText;
         TextView timeText;
         TextView username;

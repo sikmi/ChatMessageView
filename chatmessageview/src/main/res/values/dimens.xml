@@ -5,6 +5,7 @@
     <dimen name="font_large">25sp</dimen>
     <dimen name="font_normal">20sp</dimen>
     <dimen name="font_small">15sp</dimen>
+    <dimen name="font_tiny">12sp</dimen>
 
     <!-- Icon size -->
     <dimen name="icon_small">20dp</dimen>
@@ -22,6 +23,7 @@
     <!-- Layout width -->
     <dimen name="width_normal">200dp</dimen>
     <dimen name="width_small">100dp</dimen>
+    <dimen name="width_tiny">70dp</dimen>
 
     <!-- Layout height -->
     <dimen name="line_height">1dp</dimen>
