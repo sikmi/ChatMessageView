@@ -11,6 +11,7 @@ import com.github.bassaer.chatmessageview.utils.ITimeFormatter;
 import com.github.bassaer.chatmessageview.utils.SendTimeFormatter;
 
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Message object
@@ -129,6 +130,10 @@ public class Message {
      */
     private Bitmap mPicture;
 
+    /**
+     * LINK data
+     */
+    private List<LinkData> mLinkDatas;
 
     /**
      * Message Types
@@ -138,7 +143,8 @@ public class Message {
         TEXT,
         PICTURE,
         MAP,
-        LINK
+        LINK,
+        TEXT_EXTENSION
     }
 
     /**
@@ -245,6 +251,11 @@ public class Message {
 
         public Builder setPicture(Bitmap picture) {
             message.setPicture(picture);
+            return this;
+        }
+
+        public Builder setLinkDatas(List<LinkData> linkData) {
+            message.setLinkDatas(linkData);
             return this;
         }
 
@@ -380,6 +391,14 @@ public class Message {
 
     public void setPicture(Bitmap picture) {
         mPicture = picture;
+    }
+
+    public List<LinkData> getLinkDatas() {
+        return mLinkDatas;
+    }
+
+    public void setLinkDatas(List<LinkData> linkDatas) {
+        mLinkDatas = linkDatas;
     }
 
     /**
