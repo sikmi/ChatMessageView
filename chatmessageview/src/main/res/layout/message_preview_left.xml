@@ -14,16 +14,18 @@
         android:padding="@dimen/spacing_micro" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="@dimen/spacing_micro">
+        android:padding="@dimen/spacing_micro" >
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="@dimen/width_small"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_micro"
+            android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/default_text_short"
             android:textSize="@dimen/font_small"
@@ -31,8 +33,9 @@
 
         <TextView
             android:id="@+id/description_text"
-            android:layout_width="@dimen/width_small"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="2"
             android:text="@string/default_text_long"
             android:textSize="@dimen/font_tiny" />
@@ -41,8 +44,8 @@
 
     <com.github.bassaer.chatmessageview.views.RoundImageView
         android:id="@+id/thumbnail"
-        android:layout_width="@dimen/width_tiny"
-        android:layout_height="@dimen/width_tiny"
+        android:layout_width="@dimen/width_micro"
+        android:layout_height="@dimen/width_micro"
         android:layout_gravity="center_vertical"
         android:background="@android:color/transparent"
         android:contentDescription="@string/error"

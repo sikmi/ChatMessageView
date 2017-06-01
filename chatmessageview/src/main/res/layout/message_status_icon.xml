@@ -3,6 +3,6 @@
     android:id="@+id/status_icon_image_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="@dimen/icon_small"
-    android:layout_height="@dimen/icon_small"
+    android:layout_width="@dimen/icon_tiny"
+    android:layout_height="@dimen/icon_tiny"
     android:src="@drawable/ic_mail_outline"/>
