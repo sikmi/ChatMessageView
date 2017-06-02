@@ -150,7 +150,20 @@ public class MessageView extends ListView implements View.OnFocusChangeListener{
     }
 
     public void scrollToEnd() {
-        smoothScrollToPosition(getCount() - 1);
+        if (getFirstVisiblePosition() != getCount() - 1) {
+            setSelection(getCount() - 1);
+        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (getChildCount() <= 0) {
+                    return;
+                }
+                View view = getChildAt(getChildCount() - 1);
+                setSelectionFromTop(getCount() - 1, -view.getHeight());
+            }
+        }, 10);
     }
 
     public void setLeftBubbleColor(int color) {
