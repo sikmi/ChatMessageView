@@ -144,7 +144,8 @@ public class Message {
         PICTURE,
         MAP,
         LINK,
-        TEXT_EXTENSION
+        TEXT_EXTENSION,
+        PDF
     }
 
     /**
