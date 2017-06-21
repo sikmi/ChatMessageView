@@ -175,7 +175,7 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                 }
 
                 //Set text or picture on message bubble
-                if (message.getType() == Message.Type.PICTURE) {
+                if (message.getType() == Message.Type.PICTURE || message.getType() == Message.Type.PDF) {
                     //Set picture
                     View pictureBubble = mLayoutInflater.inflate(R.layout.message_picture_right, holder.mainMessageContainer);
                     holder.messagePicture = (RoundImageView) pictureBubble.findViewById(R.id.message_picture);
@@ -299,7 +299,7 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                 }
 
                 //Set text or picture on message bubble
-                if (message.getType() == Message.Type.PICTURE) {
+                if (message.getType() == Message.Type.PICTURE || message.getType() == Message.Type.PDF) {
                     //Set picture
                     View pictureBubble = mLayoutInflater.inflate(R.layout.message_picture_left, holder.mainMessageContainer);
                     holder.messagePicture = (RoundImageView) pictureBubble.findViewById(R.id.message_picture);
