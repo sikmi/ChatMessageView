@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:minLines="1"
-            android:maxLines="10"
+            android:maxLines="5"
             android:hint="@string/input_hint"/>
 
         <ImageButton
