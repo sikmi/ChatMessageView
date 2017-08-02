@@ -25,6 +25,11 @@ public class Message {
     private User mUser;
 
     /**
+     * Message key
+     */
+    private String mKey;
+
+    /**
      * Whether sender username is shown or not
      */
     private boolean mUsernameVisibility = true;
@@ -162,6 +167,7 @@ public class Message {
         mDateFormatter = new DateFormatter();
         mSendTimeFormatter = new DefaultTimeFormatter();
         mType = Type.TEXT;
+        mKey = "";
     }
 
     /**
@@ -176,6 +182,11 @@ public class Message {
 
         public Builder setUser(User user) {
             message.setUser(user);
+            return this;
+        }
+
+        public Builder setKey(String key) {
+            message.setKey(key);
             return this;
         }
 
@@ -272,6 +283,14 @@ public class Message {
 
     public void setUser(User user) {
         mUser = user;
+    }
+
+    public String getKey() {
+        return mKey;
+    }
+
+    public void setKey(String key) {
+        mKey = key;
     }
 
     public boolean getUsernameVisibility() {
