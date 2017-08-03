@@ -222,10 +222,11 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
+                    holder.messageTextBubble = (LinearLayout) textBubble.findViewById(R.id.message_bubble);
                     holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
                     holder.messageText.setText(message.getMessageText());
                     //Set bubble color
-                    setColorDrawable(mRightBubbleColor, holder.messageText.getBackground());
+                    setColorDrawable(mRightBubbleColor, holder.messageTextBubble.getBackground());
                     //Set message text color
                     holder.messageText.setTextColor(mRightMessageTextColor);
                 }
@@ -346,10 +347,11 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
+                    holder.messageTextBubble = (LinearLayout) textBubble.findViewById(R.id.message_bubble);
                     holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
                     holder.messageText.setText(message.getMessageText());
                     //Set bubble color
-                    setColorDrawable(mLeftBubbleColor, holder.messageText.getBackground());
+                    setColorDrawable(mLeftBubbleColor, holder.messageTextBubble.getBackground());
                     //Set message text color
                     holder.messageText.setTextColor(mLeftMessageTextColor);
                 }
