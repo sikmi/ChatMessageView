@@ -141,6 +141,11 @@ public class Message {
     private List<LinkData> mLinkDatas;
 
     /**
+     * Delete message
+     */
+    private boolean mIsDelete;
+
+    /**
      * Message Types
      *
      */
@@ -168,6 +173,7 @@ public class Message {
         mSendTimeFormatter = new DefaultTimeFormatter();
         mType = Type.TEXT;
         mKey = "";
+        mIsDelete = false;
     }
 
     /**
@@ -268,6 +274,11 @@ public class Message {
 
         public Builder setLinkDatas(List<LinkData> linkData) {
             message.setLinkDatas(linkData);
+            return this;
+        }
+
+        public Builder setDelete(boolean isDelete) {
+            message.setDelete(isDelete);
             return this;
         }
 
@@ -419,6 +430,14 @@ public class Message {
 
     public void setLinkDatas(List<LinkData> linkDatas) {
         mLinkDatas = linkDatas;
+    }
+
+    public boolean isDelete() {
+        return mIsDelete;
+    }
+
+    public void setDelete(boolean isDelete) {
+        mIsDelete = isDelete;
     }
 
     /**
