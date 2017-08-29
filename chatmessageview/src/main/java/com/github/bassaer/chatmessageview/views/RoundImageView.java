@@ -1,6 +1,7 @@
 package com.github.bassaer.chatmessageview.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -51,5 +52,12 @@ public class RoundImageView extends ImageView {
         initClipPath();
         canvas.clipPath(mClipPath);
         super.onDraw(canvas);
+    }
+
+    @Override
+    public void setImageBitmap(Bitmap bm) {
+        if (!bm.isRecycled()) {
+            super.setImageBitmap(bm);
+        }
     }
 }
