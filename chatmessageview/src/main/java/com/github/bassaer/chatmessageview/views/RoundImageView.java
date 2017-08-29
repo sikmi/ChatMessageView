@@ -56,7 +56,7 @@ public class RoundImageView extends ImageView {
 
     @Override
     public void setImageBitmap(Bitmap bm) {
-        if (!bm.isRecycled()) {
+        if (bm != null && !bm.isRecycled()) {
             super.setImageBitmap(bm);
         }
     }
