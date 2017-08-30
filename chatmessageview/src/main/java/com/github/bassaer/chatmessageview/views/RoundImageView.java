@@ -53,11 +53,4 @@ public class RoundImageView extends ImageView {
         canvas.clipPath(mClipPath);
         super.onDraw(canvas);
     }
-
-    @Override
-    public void setImageBitmap(Bitmap bm) {
-        if (bm != null && !bm.isRecycled()) {
-            super.setImageBitmap(bm);
-        }
-    }
 }
