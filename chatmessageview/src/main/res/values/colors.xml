@@ -25,4 +25,7 @@
     <!-- Bubble color -->
     <color name="default_left_bubble_color">@color/button_material_light</color>
     <color name="default_right_bubble_color">@color/green500</color>
+
+    <!-- Unread border -->
+    <color name="unread_border_background">#DCDCDC</color>
 </resources>

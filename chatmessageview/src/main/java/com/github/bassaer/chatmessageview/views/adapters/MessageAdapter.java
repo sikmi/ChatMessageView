@@ -63,6 +63,8 @@ public class MessageAdapter extends ArrayAdapter<Object> {
      */
     private int mMessageBottomMargin = 5;
 
+    private String mUnreadBorderText = "";
+
     public MessageAdapter(Context context, int resource, ArrayList<Object> objects) {
         super(context, resource, objects);
         mLayoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -124,9 +126,21 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     holder.timeText = (TextView) convertView.findViewById(R.id.time_display_text);
                     holder.usernameContainer = (FrameLayout) convertView.findViewById(R.id.message_user_name_container);
                     holder.statusContainer = (FrameLayout) convertView.findViewById(R.id.message_status_container);
+                    holder.unreadBorderContainer = (LinearLayout) convertView.findViewById(R.id.unread_border_container);
+
+                    TextView tv = (TextView) convertView.findViewById(R.id.unread_border_text);
+                    tv.setText(mUnreadBorderText);
+
                     convertView.setTag(holder);
                 } else {
                     holder = (MessageViewHolder) convertView.getTag();
+                }
+
+                // unread border line
+                if (message.isUnreadMarked()) {
+                    holder.unreadBorderContainer.setVisibility(View.VISIBLE);
+                } else {
+                    holder.unreadBorderContainer.setVisibility(View.GONE);
                 }
 
                 //Remove view in each container
@@ -248,11 +262,22 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     holder.timeText = (TextView) convertView.findViewById(R.id.time_display_text);
                     holder.usernameContainer = (FrameLayout) convertView.findViewById(R.id.message_user_name_container);
                     holder.statusContainer = (FrameLayout) convertView.findViewById(R.id.message_status_container);
+                    holder.unreadBorderContainer = (LinearLayout) convertView.findViewById(R.id.unread_border_container);
+
+                    TextView tv = (TextView) convertView.findViewById(R.id.unread_border_text);
+                    tv.setText(mUnreadBorderText);
+
                     convertView.setTag(holder);
                 } else {
                     holder = (MessageViewHolder) convertView.getTag();
                 }
 
+                // unread border line
+                if (message.isUnreadMarked()) {
+                    holder.unreadBorderContainer.setVisibility(View.VISIBLE);
+                } else {
+                    holder.unreadBorderContainer.setVisibility(View.GONE);
+                }
 
                 //Remove view in each container
                 holder.iconContainer.removeAllViews();
@@ -509,6 +534,10 @@ public class MessageAdapter extends ArrayAdapter<Object> {
         notifyDataSetChanged();
     }
 
+    public void setUnreadBorderText(String unreadBorderText) {
+        mUnreadBorderText = unreadBorderText;
+    }
+
     class MessageViewHolder {
         CircleImageView icon;
         FrameLayout iconContainer;
@@ -522,6 +551,7 @@ public class MessageAdapter extends ArrayAdapter<Object> {
         FrameLayout statusContainer;
         ImageView statusIcon;
         TextView statusText;
+        LinearLayout unreadBorderContainer;
     }
 
     class DateViewHolder {

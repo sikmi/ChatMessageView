@@ -146,6 +146,11 @@ public class Message {
     private boolean mIsDelete;
 
     /**
+     * Unread marked
+     */
+    private boolean mIsUnreadMarked;
+
+    /**
      * Message Types
      *
      */
@@ -174,6 +179,7 @@ public class Message {
         mType = Type.TEXT;
         mKey = "";
         mIsDelete = false;
+        mIsUnreadMarked = false;
     }
 
     /**
@@ -279,6 +285,11 @@ public class Message {
 
         public Builder setDelete(boolean isDelete) {
             message.setDelete(isDelete);
+            return this;
+        }
+
+        public Builder setUnreadMarked(boolean unreadMarked) {
+            message.setUnreadMarked(unreadMarked);
             return this;
         }
 
@@ -438,6 +449,14 @@ public class Message {
 
     public void setDelete(boolean isDelete) {
         mIsDelete = isDelete;
+    }
+
+    public boolean isUnreadMarked() {
+        return mIsUnreadMarked;
+    }
+
+    public void setUnreadMarked(boolean unreadMarked) {
+        mIsUnreadMarked = unreadMarked;
     }
 
     /**
