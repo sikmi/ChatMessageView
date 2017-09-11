@@ -231,6 +231,16 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                                 getContext().startActivity(i);
                             }
                         });
+                        // Set Long Click
+                        if (mOnBubbleLongClickListener != null) {
+                            linkView.setOnLongClickListener(new View.OnLongClickListener() {
+                                @Override
+                                public boolean onLongClick(View view) {
+                                    mOnBubbleLongClickListener.onLongClick(message);
+                                    return true;//ignore onclick event
+                                }
+                            });
+                        }
                         holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     }
                 } else {
@@ -367,6 +377,16 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                                 getContext().startActivity(i);
                             }
                         });
+                        // Set Long Click
+                        if (mOnBubbleLongClickListener != null) {
+                            linkView.setOnLongClickListener(new View.OnLongClickListener() {
+                                @Override
+                                public boolean onLongClick(View view) {
+                                    mOnBubbleLongClickListener.onLongClick(message);
+                                    return true;//ignore onclick event
+                                }
+                            });
+                        }
                         holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     }
                 } else {
