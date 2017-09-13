@@ -141,6 +141,11 @@ public class Message {
     private List<LinkData> mLinkDatas;
 
     /**
+     * PDF info data
+     */
+    private LinkData mPdfInfoDatas;
+
+    /**
      * Delete message
      */
     private boolean mIsDelete;
@@ -160,7 +165,8 @@ public class Message {
         MAP,
         LINK,
         TEXT_EXTENSION,
-        PDF
+        PDF,
+        PDF_EXTENSION
     }
 
     /**
@@ -441,6 +447,14 @@ public class Message {
 
     public void setLinkDatas(List<LinkData> linkDatas) {
         mLinkDatas = linkDatas;
+    }
+
+    public LinkData getPdfInfoDatas() {
+        return mPdfInfoDatas;
+    }
+
+    public void setPdfInfoDatas(LinkData pdfInfoDatas) {
+        mPdfInfoDatas = pdfInfoDatas;
     }
 
     public boolean isDelete() {

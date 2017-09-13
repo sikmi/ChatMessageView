@@ -243,6 +243,51 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                         }
                         holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     }
+                } else if (message.getType() == Message.Type.PDF_EXTENSION) {
+                    //Set text
+                    View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
+                    holder.messageTextBubble = (LinearLayout) textBubble.findViewById(R.id.message_bubble);
+                    holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
+                    holder.messageText.setText(message.getMessageText());
+                    //Set bubble color
+                    setColorDrawable(mRightBubbleColor, holder.messageTextBubble.getBackground());
+                    //Set message text color
+                    holder.messageText.setTextColor(mRightMessageTextColor);
+                    //Set pdf info preview
+                    View linkView = mLayoutInflater.inflate(R.layout.message_preview_right, null);
+                    View previewLine = linkView.findViewById(R.id.line);
+                    TextView previewTitleText = (TextView) linkView.findViewById(R.id.title_text);
+                    TextView previewDescripsionText = (TextView) linkView.findViewById(R.id.description_text);
+                    RoundImageView previewThumbnail = (RoundImageView) linkView.findViewById(R.id.thumbnail);
+                    //Set text
+                    previewTitleText.setText(message.getPdfInfoDatas().getTitle());
+                    previewDescripsionText.setText(message.getPdfInfoDatas().getDescription());
+                    //Set picture
+                    previewThumbnail.setImageBitmap(message.getPdfInfoDatas().getIcon());
+                    //Set message text color
+                    previewLine.setBackgroundColor(mRightMessageLinkColor);
+                    previewTitleText.setTextColor(mRightMessageTextColor);
+                    previewDescripsionText.setTextColor(mRightMessageTextColor);
+                    //Set Click
+                    if (mOnBubbleClickListener != null) {
+                        linkView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mOnBubbleClickListener.onClick(message);
+                            }
+                        });
+                    }
+                    // Set Long Click
+                    if (mOnBubbleLongClickListener != null) {
+                        linkView.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view) {
+                                mOnBubbleLongClickListener.onLongClick(message);
+                                return true;//ignore onclick event
+                            }
+                        });
+                    }
+                    holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
@@ -389,6 +434,51 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                         }
                         holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     }
+                } else if (message.getType() == Message.Type.PDF_EXTENSION) {
+                    //Set text
+                    View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
+                    holder.messageTextBubble = (LinearLayout) textBubble.findViewById(R.id.message_bubble);
+                    holder.messageText = (TextView) textBubble.findViewById(R.id.message_text);
+                    holder.messageText.setText(message.getMessageText());
+                    //Set bubble color
+                    setColorDrawable(mLeftBubbleColor, holder.messageTextBubble.getBackground());
+                    //Set message text color
+                    holder.messageText.setTextColor(mLeftMessageTextColor);
+                    //Set pdf info preview
+                    View linkView = mLayoutInflater.inflate(R.layout.message_preview_left, null);
+                    View previewLine = linkView.findViewById(R.id.line);
+                    TextView previewTitleText = (TextView) linkView.findViewById(R.id.title_text);
+                    TextView previewDescripsionText = (TextView) linkView.findViewById(R.id.description_text);
+                    RoundImageView previewThumbnail = (RoundImageView) linkView.findViewById(R.id.thumbnail);
+                    //Set text
+                    previewTitleText.setText(message.getPdfInfoDatas().getTitle());
+                    previewDescripsionText.setText(message.getPdfInfoDatas().getDescription());
+                    //Set picture
+                    previewThumbnail.setImageBitmap(message.getPdfInfoDatas().getIcon());
+                    //Set message text color
+                    previewLine.setBackgroundColor(mLeftMessageLinkColor);
+                    previewTitleText.setTextColor(mLeftMessageTextColor);
+                    previewDescripsionText.setTextColor(mLeftMessageTextColor);
+                    //Set Click
+                    if (mOnBubbleClickListener != null) {
+                        linkView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mOnBubbleClickListener.onClick(message);
+                            }
+                        });
+                    }
+                    // Set Long Click
+                    if (mOnBubbleLongClickListener != null) {
+                        linkView.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view) {
+                                mOnBubbleLongClickListener.onLongClick(message);
+                                return true;//ignore onclick event
+                            }
+                        });
+                    }
+                    holder.messageTextBubble.addView(linkView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 } else {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
