@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/message_bubble"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -10,8 +11,8 @@
         android:id="@+id/message_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_micro"
         android:gravity="left"
-        android:padding="@dimen/spacing_micro"
         android:text="@string/default_text_long"
         android:textSize="@dimen/font_normal" />
 </LinearLayout>
