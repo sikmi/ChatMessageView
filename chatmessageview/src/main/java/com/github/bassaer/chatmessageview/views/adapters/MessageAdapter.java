@@ -194,6 +194,9 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     View pictureBubble = mLayoutInflater.inflate(R.layout.message_picture_right, holder.mainMessageContainer);
                     holder.messagePicture = (RoundImageView) pictureBubble.findViewById(R.id.message_picture);
                     holder.messagePicture.setImageBitmap(message.getPicture());
+                    // ファイル名をセット
+                    holder.filename = (TextView) convertView.findViewById(R.id.filename);
+                    holder.filename.setText(message.getFilename());
                 } else if (message.getType() == Message.Type.TEXT_EXTENSION) {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_right, holder.mainMessageContainer);
@@ -385,6 +388,9 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     View pictureBubble = mLayoutInflater.inflate(R.layout.message_picture_left, holder.mainMessageContainer);
                     holder.messagePicture = (RoundImageView) pictureBubble.findViewById(R.id.message_picture);
                     holder.messagePicture.setImageBitmap(message.getPicture());
+                    // ファイル名をセット
+                    holder.filename = (TextView) convertView.findViewById(R.id.filename);
+                    holder.filename.setText(message.getFilename());
                 } else if (message.getType() == Message.Type.TEXT_EXTENSION) {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
@@ -661,6 +667,7 @@ public class MessageAdapter extends ArrayAdapter<Object> {
         FrameLayout statusContainer;
         ImageView statusIcon;
         TextView statusText;
+        TextView filename;
         LinearLayout unreadBorderContainer;
     }
 

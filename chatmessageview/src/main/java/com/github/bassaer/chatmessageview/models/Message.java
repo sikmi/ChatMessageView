@@ -155,6 +155,9 @@ public class Message {
      */
     private boolean mIsUnreadMarked;
 
+
+    private String mFilename;
+
     /**
      * Message Types
      *
@@ -231,6 +234,11 @@ public class Message {
 
         public Builder setMessageText(String messageText) {
             message.setMessageText(messageText);
+            return this;
+        }
+
+        public Builder setFilename(String filename) {
+            message.setFilename(filename);
             return this;
         }
 
@@ -359,6 +367,14 @@ public class Message {
 
     public void setMessageText(String messageText) {
         mMessageText = messageText;
+    }
+
+    public String getFilename() {
+        return mFilename;
+    }
+
+    public void setFilename(String filename) {
+        mFilename = filename;
     }
 
     public Calendar getCreatedAt() {
