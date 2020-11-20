@@ -209,6 +209,8 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     //Set message text color
                     holder.messageText.setTextColor(mRightMessageTextColor);
                     holder.messageText.setLinkTextColor(mRightMessageLinkColor);
+                    // 時間位置調整(下マージン)
+                    adjustTimeContainerRight(holder.timeText);
                     //Set link preview
                     for (final LinkData data : message.getLinkDatas()) {
                         View linkView = mLayoutInflater.inflate(R.layout.message_preview_right, null);
@@ -301,6 +303,8 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     setColorDrawable(mRightBubbleColor, holder.messageTextBubble.getBackground());
                     //Set message text color
                     holder.messageText.setTextColor(mRightMessageTextColor);
+                    // 時間位置調整(下マージン)
+                    adjustTimeContainerRight(holder.timeText);
                 }
 
                 holder.timeText.setText(message.getTimeText());
@@ -403,6 +407,8 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     //Set message text color
                     holder.messageText.setTextColor(mLeftMessageTextColor);
                     holder.messageText.setLinkTextColor(mLeftMessageLinkColor);
+                    // 時間位置調整(下マージン)
+                    adjustTimeContainerLeft(holder.mainMessageContainer);
                     //Set link preview
                     for (final LinkData data : message.getLinkDatas()) {
                         View linkView = mLayoutInflater.inflate(R.layout.message_preview_left, null);
@@ -495,6 +501,8 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     setColorDrawable(mLeftBubbleColor, holder.messageTextBubble.getBackground());
                     //Set message text color
                     holder.messageText.setTextColor(mLeftMessageTextColor);
+                    // 時間位置調整(下マージン)
+                    adjustTimeContainerLeft(holder.mainMessageContainer);
                 }
 
                 holder.timeText.setText(message.getTimeText());
@@ -555,6 +563,24 @@ public class MessageAdapter extends ArrayAdapter<Object> {
 
         return convertView;
     }
+
+    /**
+     * 時間コンテナーの位置調整(右)
+     * @param timeText
+     */
+    private void adjustTimeContainerRight(View timeText) {
+        ViewGroup parentTime = (ViewGroup)timeText.getParent();
+        parentTime.setPadding(0,0,0,getContext().getResources().getDimensionPixelSize(R.dimen.spacing_normal));
+    }
+    /**
+     * 時間コンテナーの位置調整(左)
+     * @param msgConatiner
+     */
+    private void adjustTimeContainerLeft(View msgConatiner) {
+        LinearLayout mainMessageParent = (LinearLayout) msgConatiner.getParent();
+        mainMessageParent.setOrientation(LinearLayout.HORIZONTAL);
+    }
+
 
     /**
      * Add color to drawable
