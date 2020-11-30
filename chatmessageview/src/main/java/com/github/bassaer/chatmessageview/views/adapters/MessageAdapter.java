@@ -392,9 +392,18 @@ public class MessageAdapter extends ArrayAdapter<Object> {
                     View pictureBubble = mLayoutInflater.inflate(R.layout.message_picture_left, holder.mainMessageContainer);
                     holder.messagePicture = (RoundImageView) pictureBubble.findViewById(R.id.message_picture);
                     holder.messagePicture.setImageBitmap(message.getPicture());
+                    // 画像用のコンテナーを表示
+                    View pictureFileTimeContainer = convertView.findViewById(R.id.picture_file_time_container);
+                    pictureFileTimeContainer.setVisibility(View.VISIBLE);
+                    // テキスト用のコンテナーは非表示
+                    convertView.findViewById(R.id.text_file_time_container).setVisibility(View.GONE);
                     // ファイル名をセット
-                    holder.filename = (TextView) convertView.findViewById(R.id.filename);
-                    holder.filename.setText(message.getFilename());
+                    TextView filename = (TextView)pictureFileTimeContainer.findViewById(R.id.picture_filename);
+                    filename.setText(message.getFilename());
+                    // 時間をセット
+                    TextView time = (TextView)pictureFileTimeContainer.findViewById(R.id.picture_time_display_text);
+                    time.setText(message.getTimeText());
+                    time.setTextColor(mSendTimeTextColor);
                 } else if (message.getType() == Message.Type.TEXT_EXTENSION) {
                     //Set text
                     View textBubble = mLayoutInflater.inflate(R.layout.message_text_left, holder.mainMessageContainer);
