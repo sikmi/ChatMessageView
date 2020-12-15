@@ -110,12 +110,12 @@
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/picture_filename"
-                    android:ellipsize="end"
-                    android:singleLine="true"
+                    android:singleLine="false"
                     android:layout_weight="1"
                     android:paddingRight="14dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:maxWidth="@dimen/width_normal"
                     android:text="" />
                 <TextView
                     android:id="@+id/picture_time_display_text"
