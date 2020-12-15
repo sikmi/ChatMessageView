@@ -118,6 +118,7 @@
                     android:maxWidth="@dimen/width_normal"
                     android:text="" />
                 <TextView
+                    android:layout_gravity="bottom"
                     android:id="@+id/picture_time_display_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
